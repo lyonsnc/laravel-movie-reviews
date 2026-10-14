@@ -1,0 +1,919 @@
+/*@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}*/
+
+body {
+    font-family: 'Verdana';
+    background-color: #f5f5f5;
+    color: #222;
+    margin: 0px;
+    padding: 40px;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+
+
+.success-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+}
+
+nav[role="navigation"] svg {
+    width: 16px;
+    height: 16px;
+}
+
+.bottom-paginate {
+    width: fit-content;
+    margin-inline: auto;
+    margin-top: 25px;
+    text-align: center;
+    font-size: 15px;
+}
+.container, .profile-reviews-container, .local-reviews-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 500px);
+    gap: 20px;
+    justify-content: center;
+    /*border: 1px solid black;*/
+}
+
+.review {
+    box-sizing: border-box;
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    overflow: auto;
+}
+
+.index-header {
+    margin-bottom: 10px;
+}
+
+.index-review-poster {
+    width: 150px;
+    height: auto;
+    margin-left: 10px;
+    float: right;
+    border-radius: 5px;
+}
+
+.add-review-box {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.add-review-form {
+    background-color: white;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.movie-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.movie-details {
+    flex: 1;
+}
+
+.movie-details h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.add-review-poster {
+    width: 190px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.review-input {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.review-input textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
+}
+.review h2{
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+.year-dir {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+.year {
+    color: #777;
+    font-size: 14px;
+}
+
+.dir {
+    font-style: italic;
+}
+
+.overview {
+    cursor: pointer;
+    color: #555;
+    margin-top: 20px;
+    font-size: 15.5px;
+}
+
+.overview:hover {
+    color: #222;
+}
+
+.synopsis-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+}
+
+.synopsis-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    max-width: 80%;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 30px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.synopsis-box button {
+    float: right;
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    min-height: 70px;
+    width: 100%;
+    gap: 25px;
+    margin-bottom: 40px;
+    background-color: #e5e5e5da;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    white-space: nowrap;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    justify-content: flex-end;
+}
+.navbar a {
+    text-decoration: none;
+    color: #333;
+    font-weight: normal;
+    margin: 10px;
+}
+
+.movie-poster {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.movie-search {
+    width: 600px;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 20px;
+    margin-bottom: 20px;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.movie-info {
+    flex: 1;
+}
+
+.movie-poster {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.navbar a:hover {
+    color: #000;
+}
+
+.nav-logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.1);
+}
+
+.nav-logout-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 10px;
+    font-family: inherit;
+    font-size: inherit;
+    color: #333;
+    cursor: pointer;
+}
+
+.nav-logout-button:hover {
+    color: #000;
+}
+
+.profile-disabled {
+    color: #aaa;
+    cursor: default;
+}
+
+.profile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.profile-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background: white;
+    padding: 30px;
+    box-sizing: border-box;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.15);
+}
+
+.profile-menu h2 {
+    margin-top: 0;
+}
+
+.profile-username {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 15px;
+
+}
+
+.profile-username:hover {
+    color: #000;
+}
+
+.logout-button {
+    width: 100%;
+    padding: 12px;
+}
+
+.review-button {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background-color: #333;
+    color: white;
+
+    font-size: 32px;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.review-button span {
+    position: relative;
+    top: -3px;
+}
+
+.review-button:hover {
+    background-color: #555;
+}
+
+form {
+    display: flex;
+    gap: 10px;
+    max-width: 700px;
+}
+
+.logout-form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-logout-button:hover {
+    color: black;
+    background-color: transparent;
+}
+
+.login-wrapper {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    border: 1px solid #d8d8d8;
+    border-radius: 8px;
+    max-width: 500px;
+    padding: 25px;
+}
+
+.login-register h1 {
+    text-align: center;
+}
+
+.login-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.login-register input[type="text"],
+.login-register label input[type="password"] {
+    flex: 1;
+    margin: 0;
+    padding: 12px 16px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box;
+    margin-left: 15px;
+}
+
+.login-register label {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.login-register label span {
+    width: 152px;
+}
+
+/*.login-register input[type="password"] {
+    margin-left: 45px;
+}*/
+.add-review-form {
+    display:block;
+}
+
+form input[type="text"] {
+    flex: 1;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+    border-color: #777;
+}
+
+form button {
+    padding: 12px 22px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #555;
+}
+
+.profile-reviews-title {
+    width: 100%;
+    text-align: center;
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 0 auto;
+    justify-content: center;
+    text-align: center;
+}
+
+.profile-header-sub {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-header-sub h2 {
+    font-size: 16px;
+    font-weight: normal;
+    color: #333;
+    width: 170px;
+    position: relative;
+    left: -33px;
+}
+
+.profile-header-sub a {
+    text-decoration: none;
+    color: #333;
+    width: 140px;
+    position: relative;
+    left: -10px;
+}
+
+.profile-header-sub a:hover{
+    color: black;
+}
+
+.profile-header-ab {
+    display: block;
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.profile-header-ab h1 {
+    font-weight: 600;
+    font-size: 48px;
+    margin-bottom: 0px;
+}
+.profile-header-ab small {
+    color: #999;
+    font-size: 13px;
+}
+
+/* Movie Page */
+
+.movie-display {
+    background-color: white;
+    max-width: 875px;
+    padding-top: 35px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    border: 1px solid #d8d8d8;
+    border-radius: 8px;
+    gap: 0px;
+}
+
+.movie-top {
+    display: flex;
+    justify-content: center;
+}
+
+.movie-main-header {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    /*border: 1px solid green;*/
+}
+.movie-main-header-top {
+    text-align: center;
+    width: 100%;
+}
+
+.movie-main-header-top h2 {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.movie-main-header .year {
+    font-size: 22px;
+}
+
+.movie-main-header .dir {
+    font-size: 22px;
+}
+.synopsis {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.synopsis p {
+    max-width: 78%;
+    text-align: left;
+    font-size: 17px;
+    /*border: 1px solid #ddd;*/
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    padding: 2% 4% 4%;
+    background-color: #faf8f0
+}
+
+.movie-add-to-watchlist-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.already-added {
+    background-color: #aaa;
+    cursor: default;
+    font-size: 14px;
+    padding: 4px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.remove-from-watchlist {
+    background-color: #d9534f;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.already-added:hover {
+    background-color: #aaa;
+}
+
+.movie-big-poster {
+    max-height: 450px;
+    max-width: 300px;
+    /*border: 1px solid black;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.movie-big-poster-img {
+    height: 450px;
+    width: auto;
+    border-radius: 10px;
+}
+
+.movie-cast {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0px;
+    padding-top: 0px;
+    /*border: 1px solid black;*/
+    height: auto;
+    margin-bottom: 0px;
+}
+
+.movie-cast h2 {
+    position: relative;
+    left: 15px;
+    top: 20px;
+    padding: 0px;
+    /*border: 1px solid black;*/
+}
+.cast-bar {
+    max-width: 100%;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    padding: 10px;
+    /*border: 1px solid black;*/
+    gap: 10px;
+    margin-bottom: 0px;
+}
+
+.cast-member {
+    box-sizing: border-box;
+    width: 170px;
+    padding: 0px 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    border: 1px solid #d8d8d8;
+    padding-bottom: 5px;
+}
+
+.cast-member p {
+    margin-bottom: 9px;
+}
+
+.cast-photo {
+    width: 110px;
+    height: 150px;
+    margin: 0 auto 10px;
+    border-radius: 5px;
+}
+
+.cast-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 5px;
+}
+
+.bottom-reviews-title {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    position: relative;
+    left: 15px;
+    width: 200px;
+    /*border: 1px solid black;*/
+}
+
+.local-reviews-container {
+    margin-top: 10px;
+    justify-content: center;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, 400px);
+}
+
+/*
+.review {
+    border: 1px solid black;
+}*/
+
+.local-review {
+    display: flex;
+    justify-content: center;
+}
+.local-review .review {
+    width: 350px;
+    /*border: 1px black solid;*/
+    padding-top: 8px;
+}
+
+.no-reviews-yet {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.no-reviews-yet form {
+    justify-content: center;
+}
+
+.clickable-title a {
+    text-decoration: none;
+    color: #222;
+}
+
+.clickable-title a:hover {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.movies-bottom-bar {
+    display: flex;
+    gap: 55%;
+    align-items: center;
+}
+
+.movies-bottom-bar button {
+    height: 40px;
+    padding: 11px;
+}
+
+.no-cast-found {
+    padding: 0;
+    margin-left: 20px;
+}
+
+/*watchlist.php*/
+
+.watchlist-title-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 90px;
+}
+
+.watchlist-title-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 25px;
+    margin: 10px;
+}
+
+.watchlist-title-bottom a {
+    text-decoration: none;
+    color: #222;
+    font-weight: 1.5;
+    /*display: block;*/
+    padding: 0px;
+    height: 23px;
+}
+
+.watchlist-title-bottom p {
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 0;
+    margin: 0;
+    height: auto;
+    line-height: 0.9;
+    position: relative;
+    top: 1px;
+}
+
+.watchlist-title-bottom a .search-icon {
+    font-size: 23px;
+}
+
+.watchlist-button-search:hover {
+    color: black;
+}
+
+.watchlist-display {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    gap: 30px;
+    justify-content: center;
+    margin-inline: auto;
+}
+
+
+.watchlist-movie {
+    position: relative;
+    display: flex;
+    width: 300px;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+}
+
+.watchlist-movie .del-watchlist {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    opacity: 0;
+
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 16px;
+
+    background-color: #d9534f;
+    color: white;
+
+    cursor: pointer;
+    padding: 0;
+
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.watchlist-movie .del-watchlist:hover, .remove-from-watchlist:hover {
+    background-color: #b52b27;
+}
+
+.watchlist-movie:hover .del-watchlist {
+    opacity: 1;
+}
+
+.watchlist-movie .movie-thumbnail {
+    width: 75px;
+    position: relative;
+    border-radius: 3px;
+    margin: 4px 15px 4px 4px;
+}
+
+.watchlist-movie .fix-question {
+    width: 100%;
+    position: relative;
+    top: 20%;
+}
+
+.watchlist-movie .clickable-title h2 {
+    margin-bottom: 0px;
+    padding: 0;
+}
+.watchlist-movie .year-dir {
+    margin-top: 0px;
+}
+.watchlist-movie .watchlist-header {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.flash-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: gray;
+    color: #222;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.flash-message.show {
+    opacity: 1;
+}
+
